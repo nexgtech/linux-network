@@ -44,6 +44,7 @@ A veth pair acts like a virtual network cable connecting two interfaces. Creatin
 ip link add <veth_interface_1> type veth peer name <veth_interface_2>
 ```
 ![alt text](images/image-1.png)
+
 For example:
 
 ```bash
@@ -68,6 +69,7 @@ Move each end of the veth pair into its respective namespace:
 ip link set <veth_interface> netns <namespace>
 ```
 ![alt text](images/image-2.png)
+
 For example:
 
 ```bash
@@ -87,6 +89,7 @@ Enable the interfaces inside their namespaces:
 ip netns exec <namespace> ip link set <veth_interface> up
 ```
 ![alt text](images/image-3.png)
+
 For example:
 
 ```bash
@@ -111,6 +114,7 @@ Assign IP addresses to each veth interface:
 ip netns exec <namespace> ip addr add <IP_address>/<subnet_mask> dev <veth_interface>
 ```
 ![alt text](images/image-4.png)
+
 For example:
 
 ```bash
@@ -143,6 +147,7 @@ ip netns exec ns1 ping 10.1.1.2
 ip netns exec ns2 ping 10.1.1.1
 ```
 ![alt text](images/image-5.png)
+
 If the ping is successful, your namespaces are connected!
 
 ---
@@ -159,6 +164,7 @@ ip netns add ns2
 
 ### 2. Create a Linux bridge
 ![alt text](images/image-6.png)
+
 ```bash
 ip link add <bridge_name> type bridge
 ```
@@ -170,6 +176,7 @@ ip link add br0 type bridge
 
 ### 3. Bring the bridge up
 ![alt text](images/image-7.png)
+
 ```bash
 ip link set dev br0 up
 ```
@@ -232,6 +239,7 @@ This process can be repeated for any number of namespaces, allowing you to creat
 
 ## Connect Host to Network Namespaces
 ### 1. Configure the bridge interface with an IP address
+
 ![alt text](images/image-12.png)
 
 ```bash
